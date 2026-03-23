@@ -93,9 +93,9 @@ const SettingsPage = () => {
            <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 text-center relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
                 <div className="relative pt-12">
-                   <div className="w-32 h-32 mx-auto rounded-full border-4 border-white shadow-md overflow-hidden bg-gray-100 group">
+                   <div className="relative w-32 h-32 mx-auto rounded-full border-4 border-white shadow-md overflow-hidden bg-gray-100 group">
                       <img 
-                        src={avatar || "/placeholder-avatar.png"} 
+                        src={avatar || "/placeholder-avatar.png"}  
                         alt="Profile" 
                         className="w-full h-full object-cover"
                       />
