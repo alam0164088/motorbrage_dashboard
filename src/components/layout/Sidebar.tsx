@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import {
   Users,
   Car,
@@ -16,6 +16,16 @@ import {
 
 const Sidebar = () => {
   const router = useRouter();
+  const pathname = usePathname();
+
+  const navItems = [
+    { href: '/users', label: 'User Management', icon: Users },
+    { href: '/vehicles', label: 'Vehicle Data', icon: Car },
+    { href: '/analytics', label: 'Analytics', icon: BarChart },
+    { href: '/content', label: 'Content Management', icon: FileText },
+    { href: '/subscriptions', label: 'Subscriptions', icon: CreditCard },
+    { href: '/settings', label: 'Settings', icon: Settings },
+  ];
   const [user, setUser] = useState({
     name: 'Nazmul Alam',
     email: 'alam11@gmail.com',
@@ -68,48 +78,24 @@ const Sidebar = () => {
         <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-rgb-gradient bg-[length:200%_auto] animate-background-pan">Dashboard</h1>
       </div>
       <nav className="flex-1 p-4 space-y-2">
-        <Link
-          href="/users"
-          className="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md"
-        >
-          <Users className="mr-3" />
-          User Management
-        </Link>
-        <Link
-          href="/vehicles"
-          className="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md"
-        >
-          <Car className="mr-3" />
-          Vehicle Data
-        </Link>
-        <Link
-          href="/analytics"
-          className="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md"
-        >
-          <BarChart className="mr-3" />
-          Analytics
-        </Link>
-        <Link
-          href="/content"
-          className="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md"
-        >
-          <FileText className="mr-3" />
-          Content Management
-        </Link>
-        <Link
-          href="/subscriptions"
-          className="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md"
-        >
-          <CreditCard className="mr-3" />
-          Subscriptions
-        </Link>
-        <Link
-          href="/settings"
-          className="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md"
-        >
-          <Settings className="mr-3" />
-          Settings
-        </Link>
+        {navItems.map((item) => {
+          const isActive = pathname === item.href;
+          const Icon = item.icon;
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`group flex items-center p-3 rounded-lg transition-all duration-200 ${
+                isActive 
+                  ? 'bg-gradient-to-r from-indigo-600 to-blue-600 text-white shadow-lg font-medium translate-x-1' 
+                  : 'text-gray-400 hover:bg-gray-800 hover:text-white hover:translate-x-1'
+              }`}
+            >
+              <Icon className={`mr-3 transition-colors ${isActive ? 'text-white' : 'text-gray-500 group-hover:text-white'}`} size={20} />
+              {item.label}
+            </Link>
+          );
+        })}
       </nav>
 
       {/* User Profile & Logout Section */}
