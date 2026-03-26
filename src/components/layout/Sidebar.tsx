@@ -73,9 +73,9 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-64 bg-gray-800 text-white flex flex-col h-full">
+    <div className="w-64 bg-gray-800 text-white flex flex-col h-full animate-slide-in-left transition-smooth">
       <div className="p-4 border-b border-gray-700">
-        <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-rgb-gradient bg-[length:200%_auto] animate-background-pan">Dashboard</h1>
+        <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-rgb-gradient bg-[length:200%_auto] animate-background-pan">MotorBridge</h1>
       </div>
       <nav className="flex-1 p-4 space-y-2">
         {navItems.map((item) => {

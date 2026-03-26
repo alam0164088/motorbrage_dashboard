@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "Admin dashboard",
+  title: "MotorBridge",
+  description: "Admin MotorBridge",
 };
 
 export default function RootLayout({
@@ -26,10 +26,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gradient-to-br from-slate-50 to-white text-slate-900`}
       >
         <AuthProvider>
-          {children}
+          <div className="min-h-screen animate-fade-in transition-smooth">
+            {children}
+          </div>
         </AuthProvider>
       </body>
     </html>

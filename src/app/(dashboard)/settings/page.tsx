@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
 import { useState, useEffect, ChangeEvent } from 'react';
 import { User, Mail, Lock, Save, Camera, CheckCircle } from 'lucide-react';
+import Card from '@/components/ui/Card';
 
 const SettingsPage = () => {
   const [formData, setFormData] = useState({
@@ -87,50 +88,50 @@ const SettingsPage = () => {
       </div>
 
       <div className="space-y-8">
-        
+
         {/* Top Row - Profile Summary */}
         <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-           <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 text-center relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
-                <div className="relative pt-12">
-                   <div className="relative w-32 h-32 mx-auto rounded-full border-4 border-white shadow-md overflow-hidden bg-gray-100 group">
-                      <img 
-                        src={avatar || "/placeholder-avatar.png"}  
-                        alt="Profile" 
-                        className="w-full h-full object-cover"
-                      />
-                      <label htmlFor="avatar-upload" className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer text-white">
-                         <Camera size={24} />
-                      </label>
-                      <input 
-                        type="file" 
-                        id="avatar-upload" 
-                        className="hidden" 
-                        accept="image/*"
-                        onChange={handleAvatarChange}
-                      />
-                   </div>
-                   <h2 className="mt-4 text-xl font-bold text-gray-800">{formData.name}</h2>
-                   <p className="text-sm text-gray-500">{formData.email}</p>
-                   <div className="mt-4 inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
-                      Active Account
-                  </div>
-                </div>
-           </div>
+          <Card className="text-center relative overflow-hidden p-0">
+             <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-t-xl"></div>
+             <div className="relative pt-12 p-6">
+               <div className="relative w-32 h-32 mx-auto rounded-full border-4 border-white shadow-md overflow-hidden bg-gray-100 group">
+                 <img 
+                  src={avatar || "/placeholder-avatar.png"}  
+                  alt="Profile" 
+                  className="w-full h-full object-cover"
+                 />
+                 <label htmlFor="avatar-upload" className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer text-white">
+                   <Camera size={24} />
+                 </label>
+                 <input 
+                  type="file" 
+                  id="avatar-upload" 
+                  className="hidden" 
+                  accept="image/*"
+                  onChange={handleAvatarChange}
+                 />
+               </div>
+               <h2 className="mt-4 text-xl font-bold text-gray-800">{formData.name}</h2>
+               <p className="text-sm text-gray-500">{formData.email}</p>
+               <div className="mt-4 inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
+                 Active Account
+              </div>
+             </div>
+          </Card>
         </div>
 
 
         {/* Bottom Row - Profile Form */}
         <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-          <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-            <div className="border-b border-gray-200 bg-gray-50 px-6 py-4">
-               <h3 className="text-lg font-semibold text-gray-800 flex items-center">
-                  <User size={20} className="mr-2 text-indigo-500" />
-                  Profile Information
-               </h3>
-            </div>
+         <Card className="overflow-hidden p-0">
+          <div className="border-b border-gray-200 bg-gray-50 px-6 py-4">
+            <h3 className="text-lg font-semibold text-gray-800 flex items-center">
+              <User size={20} className="mr-2 text-indigo-500" />
+              Profile Information
+            </h3>
+          </div>
             
-            <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          <form onSubmit={handleSubmit} className="p-6 space-y-6">
                 
                 {/* Form Fields */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -222,7 +223,7 @@ const SettingsPage = () => {
                  </div>
 
             </form>
-          </div>
+          </Card>
         </div>
       </div>
     </div>

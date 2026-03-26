@@ -13,7 +13,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="bg-white shadow-sm p-4 flex justify-between items-center border-t-4 border-transparent bg-clip-padding"
+    <header className="bg-white shadow-sm p-4 flex justify-between items-center border-t-4 border-transparent bg-clip-padding animate-fade-in transition-smooth"
             style={{ borderImage: 'linear-gradient(90deg, #ef4444, #f97316, #eab308, #84cc16, #22c55e, #14b8a6, #06b6d4, #3b82f6, #8b5cf6, #d946ef, #ef4444) 1' }}>
       <div>
         <h1 className="text-xl font-semibold text-gray-700">Welcome to {userName || 'Admin'}</h1>
