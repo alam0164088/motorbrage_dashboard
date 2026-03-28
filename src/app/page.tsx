@@ -16,12 +16,13 @@ const LoginPage = () => {
     setError('');
 
     // Mock login logic
-    if (email === 'admin@example.com' && password === 'password123') {
+    if (email === 'motorbridge@gmail.com' && password === 'password123') {
       // In a real app, you'd get a token from your API
       localStorage.setItem('isLoggedIn', 'true');
-      localStorage.setItem('userName', 'Nazmul Alam');
-      localStorage.setItem('userEmail', 'alam11@gmail.com');
+      localStorage.setItem('userName', 'motorbridge');
+      localStorage.setItem('userEmail', 'motorbridge@gmail.com');
       localStorage.setItem('userAvatar', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80');
+      localStorage.setItem('userPassword', 'password123');
       
       // Dispatch a custom event to notify components of auth change
       window.dispatchEvent(new Event('storage'));

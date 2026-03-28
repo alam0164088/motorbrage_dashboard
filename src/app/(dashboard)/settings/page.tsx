@@ -7,8 +7,8 @@ import Card from '@/components/ui/Card';
 const SettingsPage = () => {
   const [formData, setFormData] = useState({
     name: '',
-    email: '', 
-    currentPassword: '',
+    email: '',
+    oldPassword: '',
     newPassword: '',
     confirmPassword: '',
   });
@@ -28,6 +28,11 @@ const SettingsPage = () => {
     }));
     
     setAvatar(storedAvatar || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80');
+
+    // Ensure there is a password in localStorage for mock validation
+    if (!localStorage.getItem('userPassword')) {
+      localStorage.setItem('userPassword', 'password123');
+    }
   }, []);
   const [successMessage, setSuccessMessage] = useState('');
   const [error, setError] = useState('');
@@ -62,9 +67,25 @@ const SettingsPage = () => {
       return;
     }
 
-    if (formData.newPassword && formData.newPassword !== formData.confirmPassword) {
-      setError('New passwords do not match.');
-      return;
+    if (formData.oldPassword || formData.newPassword || formData.confirmPassword) {
+      if (!formData.oldPassword || !formData.newPassword || !formData.confirmPassword) {
+        setError('Please fill in old, new, and confirm password fields to change your password.');
+        return;
+      }
+
+      const currentStoredPassword = localStorage.getItem('userPassword') || 'password123';
+      if (formData.oldPassword !== currentStoredPassword) {
+        setError('Old password is incorrect.');
+        return;
+      }
+
+      if (formData.newPassword !== formData.confirmPassword) {
+        setError('New passwords do not match.');
+        return;
+      }
+
+      // Update password in localStorage for this demo
+      localStorage.setItem('userPassword', formData.newPassword);
     }
 
     // Mock API call simulation
@@ -171,7 +192,18 @@ const SettingsPage = () => {
                          <Lock size={18} className="mr-2 text-indigo-500" /> Change Password
                     </h4>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                         <div className="space-y-2">
+                            <label className="text-sm font-medium text-gray-700">Old Password</label>
+                            <input
+                                type="password"
+                                name="oldPassword"
+                                value={formData.oldPassword}
+                                onChange={handleChange}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"
+                                placeholder="Current password"
+                            />
+                        </div>
                          <div className="space-y-2">
                             <label className="text-sm font-medium text-gray-700">New Password</label>
                             <input
@@ -180,7 +212,7 @@ const SettingsPage = () => {
                                 value={formData.newPassword}
                                 onChange={handleChange}
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"
-                                placeholder="Leave blank to keep current"
+                                placeholder="New password"
                             />
                         </div>
                          <div className="space-y-2">

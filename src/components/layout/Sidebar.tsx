@@ -27,8 +27,8 @@ const Sidebar = () => {
     { href: '/settings', label: 'Settings', icon: Settings },
   ];
   const [user, setUser] = useState({
-    name: 'Nazmul Alam',
-    email: 'alam11@gmail.com',
+    name: 'motorbridge',
+    email: 'motorbridge@gmail.com',
     avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
   });
 
@@ -41,8 +41,8 @@ const Sidebar = () => {
       
       if (storedName || storedEmail || storedAvatar) {
         setUser({
-          name: storedName || 'Nazmul Alam',
-          email: storedEmail || 'alam11@gmail.com',
+          name: storedName || 'motorbridge',
+          email: storedEmail || 'motorbridge@gmail.com',
           avatar: storedAvatar || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
         });
       }
